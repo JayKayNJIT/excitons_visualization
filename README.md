@@ -1,5 +1,4 @@
 # excitions_visualization
-Automate the excitons visualization by using code Exciton through bash script
 
 
 This script follows a tutorial[1] provided by the official tutorial library of the full potential all electron DFT code Exciting[2].
