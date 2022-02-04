@@ -26,7 +26,7 @@ cp EPSILON/EPSILON_BSE-singlet-TDA-BAR_SCR-full_OC11.OUT singlet-TDA
 PLOT-files.py -f singlet-TDA  -lx 'Energy [eV]'  -ly 'Im $\varepsilon_M$'  -t 'Macroscopic dielectric function'  -g  -rc  -cy 3  -x 0 27  -nl
 cd $files && mkdir ../$value/step1_BSE/step2_excitons/
 
-for value2 in 1 2 3 4 5  #excitons number, change these number depending upon how many excitons you're visualizing, be careful not to exceed exciton flag value in step1 input.xml
+for value2 in 1 2 3 4 5  #excitons number, change these number depending upon how many excitons you're visualizing, be careful not to exceed exciton flag value in step 2 input.xml
 do
 cd $files && mkdir ../$value/step1_BSE/step2_excitons/$value2  &&  cd ../$value/step1_BSE/step2_excitons/$value2/
 cd ../../       &&      cp -r * step2_excitons/$value2/     ;      cd step2_excitons/$value2/  
