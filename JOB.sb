@@ -1,0 +1,42 @@
+#!/bin/bash -l
+# The above line must be first and must include the "-l"
+
+#SBATCH --job-name=excitons
+#SBATCH --output=%x.%j.out # %x.%j expands to JobName.JobID
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+# Memory required; lower amount gets scheduling priority
+#SBATCH --mem=0
+# Time required in d-hh:mm:ss format; lower time gets scheduling priority
+# Purge and load the correct modules
+module purge > /dev/null 2>&1
+module load intel exciting_smp/20210707
+module list
+module load python/3.8
+
+files='/research/ddlab/jk435/MD_LAMMPS_ddlab/TEST/curved_materials/final/phaseII/full_sphere/trim_version/loop/final/Nlayers/excitons/files/'
+
+for value in 1 2 3 4  # systems numbers
+do
+cd $files
+rm -r ../$value/step1_BSE       ;       mkdir ../$value/step1_BSE 
+cd ../$value/step1_BSE      &&      cp $files/$value.BSE.xml ./
+mv $value.BSE.xml input.xml     &&      time exciting_smp
+cp EPSILON/EPSILON_BSE-singlet-TDA-BAR_SCR-full_OC11.OUT singlet-TDA
+PLOT-files.py -f singlet-TDA  -lx 'Energy [eV]'  -ly 'Im $\varepsilon_M$'  -t 'Macroscopic dielectric function'  -g  -rc  -cy 3  -x 0 27  -nl
+cd $files && mkdir ../$value/step1_BSE/step2_excitons/
+
+for value2 in 1 2 3 4 5  #excitons number, change these number depending upon how many excitons you're visualizing, be careful not to exceed exciton flag value in step1 input.xml
+do
+cd $files && mkdir ../$value/step1_BSE/step2_excitons/$value2  &&  cd ../$value/step1_BSE/step2_excitons/$value2/
+cd ../../       &&      cp -r * step2_excitons/$value2/     ;      cd step2_excitons/$value2/  
+rm -r step2_excitons/  KPATHEXC/  ;  rm excitonWavefunction* input.xml PLOT*
+cp $files/$value.EXCITONS.xml ./  && mv $value.EXCITONS.xml input.xml 
+sed -i -e 's/lambda="1"/lambda="'"$value2"'"/g' input.xml  &&  time exciting_smp
+cd KPATHEXC/
+cp KPATH_BSE-singlet-TDA-BAR_SCR-full_QMT001_LAMBDA00000$value2.OUT LiF-exciton-$value2
+PLOT-exciton-weights-LiF.py LiF-exciton-$value2 -10 15 0.2
+done
+ unset value2
+done
+ unset value
