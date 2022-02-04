@@ -13,7 +13,10 @@ You can use these X/ directories to perform the SCF calculations[3] of all the s
 X.BSE.xml is prepared by following Step 2 and X.EXCITONS.xml is prepared by following Step 3 of the tutorial[1]. Now create a new file JOB.sb in files/ which will be same job schedule file JOB.sb given in this repository and submit it to your machine. This script is desgined along with the input files to handle 4 systems/structures and plot first 5 bright excitons(Y=5) of the each of those systems/structures in real space[4] and k-space[5]. And this will also plot macroscopic dielectric function[6]. If you want to increase/decrease the number of systems/structuress, just change the number of elements in 1st For loop of the script and if you decided to change the number of excitons then just change the number of elements in the 2nd For loop of the script along with making corresponding changes in the input scripts i.e. X.BSE.xml and X.EXCITONS.xml.
 
 Thank you for giving try to this script and please let me know if you face any difficulty to run it and/or have any feedback.
+
 Have a good day!
+
+
 
 [1]
 http://exciting.wikidot.com/oxygen-exciton-visualization
