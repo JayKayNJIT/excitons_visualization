@@ -1,4 +1,4 @@
-# excitions_visualization
+# excitons_visualization
 
 
 This script follows a tutorial[1] provided by the official tutorial library of the full potential all electron DFT code Exciting[2].
