@@ -16,7 +16,7 @@ Thank you for giving try to this script and please let me know if you face any d
 Have a good day!
 
 
-
+EDIT1 : Please look for the Youtube link[7] containing animations of the MD trajectories of the system and the related preprint[8].  
 
 
 [1]
@@ -36,3 +36,10 @@ X/step1_BSE/step2_excitons/Y/KPATHEXC/LiF-exciton-1.png
 
 [6]
 X/step1_BSE/PLOT.png
+
+[7]
+https://youtube.com/playlist?list=PLyRNmanntydjAo57oO2aeNi811W8lFJjw
+
+[8]
+https://arxiv.org/pdf/2206.09317
+
